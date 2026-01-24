@@ -1,0 +1,13 @@
+[[rules]]
+id = "maven-username"
+description = "Detect hard-coded username in pom.xml"
+regex = '''<username>[^<]+</username>'''
+path = '''pom.xml'''
+severity = "MEDIUM"
+
+[[rules]]
+id = "maven-password"
+description = "Detect hard-coded password in pom.xml"
+regex = '''<password>[^<]+</password>'''
+path = '''pom.xml'''
+severity = "HIGH"
