@@ -11,6 +11,26 @@ pipeline {
             steps {
                 bat 'mvn clean package'
             }
+        stage('SonarQube Analysis') {
+            steps {
+                withSonarQubeEnv('SonarQube') {
+                    sh """
+                        mvn sonar:sonar \
+                        -Dsonar.projectKey=${SONAR_PROJECT_KEY} \
+                        -Dsonar.projectName='Vagile WebApp' \
+                        -Dsonar.java.binaries=target/classes
+                    """
+                }
+            }
+        }
+        
+        stage('Quality Gate') {
+            steps {
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
+                }
+            }
+        }
             
         }
         stage ('tomcat-deployment'){
