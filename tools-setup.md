@@ -10,3 +10,8 @@ Download java 21 on redhat on aws ec2
 
     9  source /etc/profile
    10  echo $JAVA_HOME
+
+
+<role rolename="manager-script"/>
+ <role rolename="manager-gui"/>
+ <user username="tomcat" password="tomcat" roles="manager-script,manager-gui"/>
