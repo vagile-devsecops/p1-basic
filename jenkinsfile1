@@ -1,0 +1,24 @@
+pipeline {
+    agent any
+    triggers {
+        pollSCM('*/2 * * * *')
+    }
+    stages {
+        stage('scm checkout') {
+            steps {
+             git(branch: 'main', url: 'https://github.com/vagile-devsecops/p1-basic.git')
+
+            }
+        }
+        stage('maven build') {
+            steps {
+                bat 'mvn package'
+            }
+        }
+        stage('deploy tomcat') {
+            steps {
+                bat 'mvn tomcat7:deploy'
+            }
+        }
+}
+}
