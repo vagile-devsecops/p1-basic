@@ -7,3 +7,6 @@ artifacts:
   objects:
     location: 'gs://gcp-vagile-ci-bucket/'
     paths: ['target/*.war']
+
+options:
+  logging: CLOUD_LOGGING_ONLY
