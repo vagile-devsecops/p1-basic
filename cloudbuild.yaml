@@ -2,3 +2,8 @@ steps:
 - name: 'maven:3.8.1-jdk-11'
   entrypoint: 'mvn'
   args: ['clean', 'package']
+
+artifacts:
+  objects:
+    location: 'gs://gcp-vagile-ci-bucket/'
+    paths: ['target/*.war']
